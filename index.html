@@ -1,0 +1,888 @@
+<title>Sanket Joshi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: single-column scroll, max-width prose with full-bleed accent bands */
+:root {
+  --bg: #f6f4ff;
+  --bg-card: #ffffff;
+  --fg: #1a1631;
+  --fg-muted: #5e5a6e;
+  --accent: #5b2ee5;
+  --accent-light: #ede8ff;
+  --accent-hover: #4a1fd4;
+  --border: #e2ddf0;
+  --tag-bg: #f0ecfa;
+  --tag-fg: #5b2ee5;
+  --stat-bg: #f6f4ff;
+  --hero-bg: linear-gradient(135deg, #f6f4ff 0%, #ede8ff 50%, #f6f4ff 100%);
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(26,22,49,0.06);
+  --shadow-md: 0 4px 16px rgba(26,22,49,0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0d1a;
+    --bg-card: #1a1729;
+    --fg: #eae7f5;
+    --fg-muted: #9b96ad;
+    --accent: #8b6cf7;
+    --accent-light: #231d3a;
+    --accent-hover: #a08af9;
+    --border: #2d2842;
+    --tag-bg: #231d3a;
+    --tag-fg: #a08af9;
+    --stat-bg: #1a1729;
+    --hero-bg: linear-gradient(135deg, #0f0d1a 0%, #1a1530 50%, #0f0d1a 100%);
+    --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0d1a;
+  --bg-card: #1a1729;
+  --fg: #eae7f5;
+  --fg-muted: #9b96ad;
+  --accent: #8b6cf7;
+  --accent-light: #231d3a;
+  --accent-hover: #a08af9;
+  --border: #2d2842;
+  --tag-bg: #231d3a;
+  --tag-fg: #a08af9;
+  --stat-bg: #1a1729;
+  --hero-bg: linear-gradient(135deg, #0f0d1a 0%, #1a1530 50%, #0f0d1a 100%);
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  padding-inline: 20px;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+* { box-sizing: border-box; }
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: var(--bg);
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.nav-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 20px; }
+.nav-links a {
+  color: var(--fg-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+@media (max-width: 560px) {
+  .nav-links { display: none; }
+}
+
+/* Hero */
+.hero {
+  background: var(--hero-bg);
+  border-radius: var(--radius);
+  padding: 48px 36px 40px;
+  margin-top: 28px;
+}
+.badge {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--tag-fg);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.hero h1 .accent { color: var(--accent); }
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--fg-muted);
+  max-width: 540px;
+  margin-bottom: 28px;
+}
+.hero-desc strong {
+  color: var(--fg);
+  font-weight: 600;
+  font-style: italic;
+}
+.hero-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.hero-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  color: var(--fg);
+  width: fit-content;
+}
+.hero-contact-item svg {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  fill: var(--accent);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 0;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 28px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--fg);
+}
+.btn-secondary:hover { background: var(--accent-light); color: var(--accent); }
+.btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+}
+.stat {
+  text-align: center;
+  background: var(--stat-bg);
+  border-radius: var(--radius-sm);
+  padding: 18px 10px;
+  border: 1px solid var(--border);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  margin-top: 2px;
+}
+
+/* Section */
+.section {
+  margin-top: 56px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 28px;
+  text-wrap: balance;
+}
+
+/* About */
+.about-text {
+  color: var(--fg-muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+.about-text p { margin: 0 0 14px; }
+
+/* Experience */
+.exp-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.exp-dates {
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+.exp-company {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.exp-tagline {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.exp-location {
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+}
+.exp-achievements {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 16px;
+}
+.exp-achievements li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+.exp-achievements li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag {
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 16px;
+  letter-spacing: 0.01em;
+}
+
+/* Projects */
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.project-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.project-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.project-sub {
+  font-size: 0.88rem;
+  color: var(--fg-muted);
+  margin-bottom: 14px;
+}
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+.project-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.project-stat {
+  text-align: center;
+  background: var(--stat-bg);
+  border-radius: var(--radius-sm);
+  padding: 14px 8px;
+  border: 1px solid var(--border);
+}
+.project-stat .stat-num { font-size: 1.3rem; }
+.project-stat .stat-label { font-size: 0.72rem; }
+
+.project-outcomes h4 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: var(--fg);
+}
+.project-outcomes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+.project-outcomes li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+.project-outcomes li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Skills grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.skill-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.skill-group-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+/* Education */
+.edu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 14px;
+}
+.edu-degree {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.edu-school {
+  font-size: 0.88rem;
+  color: var(--fg-muted);
+}
+.edu-meta {
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+  margin-top: 4px;
+}
+
+/* CTA */
+.cta-section {
+  background: var(--hero-bg);
+  border-radius: var(--radius);
+  padding: 44px 36px;
+  text-align: center;
+  margin-top: 56px;
+  margin-bottom: 40px;
+}
+.cta-section h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+.cta-section p {
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+  max-width: 460px;
+  margin: 0 auto 24px;
+}
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 500px) {
+  .hero { padding: 32px 20px 28px; }
+  .exp-card, .project-card { padding: 20px; }
+  .stats { grid-template-columns: 1fr; }
+  .cta-section { padding: 32px 20px; }
+}
+</style>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="#" class="nav-name">Sanket Joshi</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <span class="badge">Available for New Opportunities</span>
+  <h1>Hi, I'm <span class="accent">Sanket Joshi</span></h1>
+  <p class="hero-desc">
+    An Associate Product Manager with 7+ years across <strong>B2B SaaS</strong>, <strong>data platforms</strong> and <strong>GenAI</strong>. Core member of KNIME's 0-to-1 Team Plan launch, shipping AI agents and building RAG products independently.
+  </p>
+
+  <div class="hero-contact">
+    <span class="hero-contact-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      Berlin, Germany
+    </span>
+    <span class="hero-contact-item">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      joshisanket80@gmail.com
+    </span>
+  </div>
+
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="https://www.linkedin.com/in/sanket-joshi-897961102/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      LinkedIn Profile
+    </a>
+    <a class="btn btn-secondary" href="https://github.com/sanketjoshi2012" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      GitHub
+    </a>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">7+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1,000+</div>
+      <div class="stat-label">Downloads Driven</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">AI Agents Shipped</div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="about-text">
+    <p>I'm an Associate Product Manager with over seven years of experience across B2B SaaS, data platforms, and GenAI products. At KNIME, I was a core member of the 0-to-1 launch of the Team Plan SaaS product, where I owned beta testing, discovery calls, the product backlog, and go-to-market execution. I also shipped three public AI agents that together drove more than 1,000 downloads across 35+ analytics solutions.</p>
+    <p>Outside of my day job, I independently build AI products. I've created a RAG system for querying financial documents with page-level citations and a live MCP assistant for the FIFA World Cup. I'm passionate about the intersection of data, AI, and product thinking, and I bring a builder's mindset to every problem I work on.</p>
+    <p>I'm currently based in Berlin and actively looking for APM or PM roles in AI and data products across Germany or India. I hold an M.Sc. in Data and Knowledge Engineering from Otto von Guericke Universität Magdeburg and a B.E. in Computer Engineering from Mumbai University.</p>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="section" id="experience">
+  <h2 class="section-title">Professional Experience</h2>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-role">Associate Product Manager, AI Solutions</div>
+      <div class="exp-dates">Jan 2025 – Mar 2026</div>
+    </div>
+    <div class="exp-company">KNIME GmbH (B2B SaaS)</div>
+    <div class="exp-tagline">Shipped 3 AI agents, 1,000+ template downloads</div>
+    <div class="exp-location">Berlin, Germany</div>
+    <ul class="exp-achievements">
+      <li>Drove 1,000+ downloads across 35+ analytics templates by scoping priority use cases with Sales and enterprises</li>
+      <li>Shipped 3 GenAI agents to public launch, incl. Reimbursement Validator (500+ downloads) and KPI Interpreter (300+ downloads)</li>
+      <li>Owned Finance domain roadmap, making build-vs-skip calls on 10 FP&A use cases and dropping 5 before build</li>
+      <li>Launched a Zendesk + LLM support ticket summariser, cutting average triage time by 20% in pilot tests</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">Product Strategy</span>
+      <span class="tag">GenAI</span>
+      <span class="tag">Agile</span>
+      <span class="tag">Roadmapping</span>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-role">Product Analyst, Growth & GTM</div>
+      <div class="exp-dates">Jun 2022 – Dec 2024</div>
+    </div>
+    <div class="exp-company">KNIME GmbH (B2B SaaS)</div>
+    <div class="exp-tagline">Co-launched Team Plan SaaS, lifted downloads 2x</div>
+    <div class="exp-location">Berlin, Germany</div>
+    <ul class="exp-achievements">
+      <li>Lifted content downloads 2x by pitching a paid-to-free distribution shift that leadership adopted</li>
+      <li>Co-led GTM for KNIME Team Plan (0-to-1 SaaS): ran beta and 5+ discovery calls, fixing 10+ adoption blockers</li>
+      <li>Defined 4 user personas and built activation email journeys</li>
+      <li>Owned analytics for 20+ content assets: KPIs, dashboards and Salesforce lead routing</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">GTM</span>
+      <span class="tag">User Personas</span>
+      <span class="tag">Growth Strategy</span>
+      <span class="tag">Analytics</span>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-role">Product Research Analyst</div>
+      <div class="exp-dates">May 2021 – May 2022</div>
+    </div>
+    <div class="exp-company">Fraunhofer ISI & Georg Eckert Institute</div>
+    <div class="exp-tagline">Built KPI benchmarks and knowledge graph tooling</div>
+    <div class="exp-location">Remote, Germany</div>
+    <ul class="exp-achievements">
+      <li>Built a KPI benchmark pipeline for German metal industry firms and a Neo4j graph explorer surfacing missing research links</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">Data Analysis</span>
+      <span class="tag">Neo4j</span>
+      <span class="tag">KPI Benchmarks</span>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-role">Associate Product Consultant</div>
+      <div class="exp-dates">Nov 2015 – Aug 2018</div>
+    </div>
+    <div class="exp-company">Syntel, now Atos Syntel (Insurance)</div>
+    <div class="exp-tagline">Automated reporting, saved 20+ hours weekly</div>
+    <div class="exp-location">Mumbai, India</div>
+    <ul class="exp-achievements">
+      <li>Cut 20+ hours of manual work weekly by co-driving Agile reporting automation for a US Life & Pensions carrier</li>
+      <li>Coordinated releases across 4 cross-functional teams, holding policy and claims systems</li>
+    </ul>
+    <div class="tags">
+      <span class="tag">Agile</span>
+      <span class="tag">Insurance</span>
+      <span class="tag">Release Coordination</span>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="section" id="projects">
+  <h2 class="section-title">Featured Projects</h2>
+
+  <div class="project-card">
+    <div class="project-label">Independent AI Build</div>
+    <div class="project-name">FinRAG: RAG for Financial Documents</div>
+    <div class="project-sub">Claude · LangChain · ChromaDB · HuggingFace</div>
+    <p class="project-desc">Built a RAG product that lets users query financial reports in plain English with page-level citations. Designed the retrieval pipeline, chunking strategy, and evaluation framework from scratch.</p>
+    <div class="project-stats">
+      <div class="project-stat">
+        <div class="stat-num">90%+</div>
+        <div class="stat-label">Accuracy</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">RAG</div>
+        <div class="stat-label">Architecture</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">LLM</div>
+        <div class="stat-label">Powered</div>
+      </div>
+    </div>
+    <div class="project-outcomes">
+      <h4>Key Outcomes:</h4>
+      <ul>
+        <li>90%+ accuracy in evaluation benchmarks for financial document Q&A</li>
+        <li>Page-level citations for every answer, enabling verifiable responses</li>
+        <li>End-to-end pipeline: ingestion, chunking, embedding, retrieval, generation</li>
+      </ul>
+    </div>
+    <div class="tags">
+      <span class="tag">RAG</span>
+      <span class="tag">LangChain</span>
+      <span class="tag">ChromaDB</span>
+      <span class="tag">Claude</span>
+      <span class="tag">HuggingFace</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-label">Independent AI Build</div>
+    <div class="project-name">FIFA World Cup 2026 AI Assistant</div>
+    <div class="project-sub">Claude · MCP · Custom Tools · Render</div>
+    <p class="project-desc">Designed and shipped a live MCP assistant providing real-time match data, standings, and smart filtering for the FIFA World Cup 2026. Built custom tool integrations and deployed on Render.</p>
+    <div class="project-stats">
+      <div class="project-stat">
+        <div class="stat-num">Live</div>
+        <div class="stat-label">Real-time Data</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">MCP</div>
+        <div class="stat-label">Protocol</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">Custom</div>
+        <div class="stat-label">Tool Integrations</div>
+      </div>
+    </div>
+    <div class="project-outcomes">
+      <h4>Key Outcomes:</h4>
+      <ul>
+        <li>Live match data, standings, and filtering via natural language queries</li>
+        <li>Custom MCP tools for structured sports data retrieval</li>
+        <li>Deployed and accessible via Render cloud platform</li>
+      </ul>
+    </div>
+    <div class="tags">
+      <span class="tag">MCP</span>
+      <span class="tag">Claude</span>
+      <span class="tag">API Design</span>
+      <span class="tag">Render</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-label">KNIME – Growth & Content</div>
+    <div class="project-name">KNIME Templates Library</div>
+    <div class="project-sub">Stakeholder Management · Use Case Scoping · Content Strategy</div>
+    <p class="project-desc">Built 70+ analytics templates as a two-person team, now live on <a href="https://www.knime.com/templates" target="_blank" rel="noopener" style="color:var(--accent)">knime.com/templates</a>. Coordinated across Sales, Marketing, and the website team to shortlist use cases, prioritise by business impact, and ship end-to-end.</p>
+    <div class="project-stats">
+      <div class="project-stat">
+        <div class="stat-num">70+</div>
+        <div class="stat-label">Templates Live</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Person Team</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Stakeholder Teams</div>
+      </div>
+    </div>
+    <div class="project-outcomes">
+      <h4>Key Outcomes:</h4>
+      <ul>
+        <li>70+ templates live on KNIME's website, covering analytics, finance, and AI use cases</li>
+        <li>Coordinated with Sales, Marketing, and website teams for use case prioritisation and launch</li>
+        <li>Two-person team delivering end-to-end: scoping, building, QA, and stakeholder sign-off</li>
+      </ul>
+    </div>
+    <div class="tags">
+      <span class="tag">Stakeholder Management</span>
+      <span class="tag">Content Strategy</span>
+      <span class="tag">Use Case Scoping</span>
+      <span class="tag">Cross-functional</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-label">KNIME – AI Solutions</div>
+    <div class="project-name">Reimbursement Validator Agent</div>
+    <div class="project-sub">GenAI · KNIME · Enterprise Analytics</div>
+    <p class="project-desc">Shipped a GenAI agent that automates expense reimbursement validation for enterprises, reaching 500+ downloads on the KNIME platform. Scoped use cases with Sales and enterprise stakeholders.</p>
+    <div class="project-stats">
+      <div class="project-stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Downloads</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">GenAI</div>
+        <div class="stat-label">Powered</div>
+      </div>
+      <div class="project-stat">
+        <div class="stat-num">E2E</div>
+        <div class="stat-label">Automation</div>
+      </div>
+    </div>
+    <div class="project-outcomes">
+      <h4>Key Outcomes:</h4>
+      <ul>
+        <li>500+ downloads on the KNIME platform</li>
+        <li>Automated enterprise expense validation workflow end-to-end</li>
+        <li>Scoped and prioritised with Sales and enterprise stakeholders</li>
+      </ul>
+    </div>
+    <div class="tags">
+      <span class="tag">GenAI</span>
+      <span class="tag">Enterprise</span>
+      <span class="tag">KNIME</span>
+      <span class="tag">Automation</span>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="section" id="skills">
+  <h2 class="section-title">Core Competencies</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Product</div>
+      <div class="tags">
+        <span class="tag">Discovery</span>
+        <span class="tag">User Personas</span>
+        <span class="tag">Roadmapping</span>
+        <span class="tag">GTM</span>
+        <span class="tag">KPIs</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Confluence</span>
+        <span class="tag">Agile/Scrum</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI & Build</div>
+      <div class="tags">
+        <span class="tag">LLM Tool Calling</span>
+        <span class="tag">Agentic Workflows</span>
+        <span class="tag">RAG</span>
+        <span class="tag">MCP</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">Claude</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">n8n</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Data & Analytics</div>
+      <div class="tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">Snowflake</span>
+        <span class="tag">dbt</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Looker</span>
+        <span class="tag">Salesforce</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Design & Tech</div>
+      <div class="tags">
+        <span class="tag">Figma</span>
+        <span class="tag">Wireframing</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Django</span>
+        <span class="tag">Neo4j</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">ChromaDB</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="section" id="education">
+  <h2 class="section-title">Education</h2>
+  <div class="edu-card">
+    <div class="edu-degree">M.Sc. Data and Knowledge Engineering</div>
+    <div class="edu-school">Otto von Guericke Universität Magdeburg</div>
+    <div class="edu-meta">Oct 2018 – Jan 2023 · Magdeburg, Germany · Grade 2.1</div>
+  </div>
+  <div class="edu-card">
+    <div class="edu-degree">B.E. Computer Engineering</div>
+    <div class="edu-school">Mumbai University</div>
+    <div class="edu-meta">Aug 2012 – Jul 2015 · Mumbai, India · Grade 2.4</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Let's Build Something Together</h2>
+  <p>I'm actively looking for APM / PM roles in AI and data products — anywhere in Germany or India. Let's connect and talk product!</p>
+  <div class="cta-actions">
+    <a class="btn btn-primary" href="https://www.linkedin.com/in/sanket-joshi-897961102/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      Connect on LinkedIn
+    </a>
+    <a class="btn btn-secondary" href="https://github.com/sanketjoshi2012" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  © 2026 Sanket Joshi. Built with care.
+</footer>
